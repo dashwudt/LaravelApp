@@ -24,6 +24,7 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), [
             'login' => 'required|unique:users,login|max:255',
             'password' => 'required|min:8'
+
         ]);
 
         // Create a new user using the validated data
@@ -31,6 +32,7 @@ class UserController extends Controller
         $user = User::create([
             'login' => $request->login,
             'password' => Hash::make($request->password),
+            'is_admin' => false,
         ]);
 
         return response()->json($user, 201);

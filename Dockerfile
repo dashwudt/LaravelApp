@@ -20,6 +20,8 @@ COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 # Create a group and user
 #RUN groupadd -g 1000 laravelgroup && \
 #    useradd -u 1000 -ms /bin/bash -g laravelgroup laraveluser
+RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - \
+    && apt-get install -y nodejs
 
 # Set working directory
 WORKDIR /var/www
